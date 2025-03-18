@@ -1,6 +1,31 @@
 <mvc:View controllerName="com.iherb.tm.ztmiherbfreightorders.controller.FOtable"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-    </Page>
+    xmlns="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:sv="sap.ui.comp.smartvariants"
+    xmlns:m="sap.m">
+    <m:Page id="page">
+        <m:VBox id="_IDGenVBox">
+            <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="ZC_FoTorRoot">
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration1" key="TorId" label="{i18n>FreightOrderLabel}" visibleInAdvancedArea="true" />
+                    <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration2" key="PickupDt" label="{i18n>PickUpLabel}" visibleInAdvancedArea="true" />
+                    <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration3" key="DeliveryDt" label="{i18n>destinationDate}" visibleInAdvancedArea="true" />
+                </smartFilterBar:controlConfiguration>
+                <smartFilterBar:layoutData>
+                    <m:FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" />
+                </smartFilterBar:layoutData>
+            </smartFilterBar:SmartFilterBar>
+             <smartTable:SmartTable id="SmartTable" entitySet="ZC_FoTorRoot" smartFilterId="smartFilterBar" showTablePersonalisation="true" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="{i18n>FreightOrderLabel}" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" showFullScreenButton="true" beforeRebindTable="onBeforeRebindTable" ignoreFromPersonalisation=" " requestAtLeastFields=" ">
+                <smartTable:customToolbar />
+                <core:Fragment fragmentName="com.iherb.tm.ztmiherbfreightorders.fragment.tableExt" id="idFragmentPOtable" type="XML" />
+                <!-- layout data used to make the table growing but the filter bar fixed -->
+                <smartTable:layoutData>
+                    <m:FlexItemData id="_IDGenFlexItemData2" growFactor="1" baseSize="0%" />
+                </smartTable:layoutData>
+            </smartTable:SmartTable>
+        </m:VBox>
+    </m:Page>
 </mvc:View>
