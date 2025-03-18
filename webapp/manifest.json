@@ -1,0 +1,140 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "com.iherb.tm.ztmiherbfreightorders",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.16.5",
+      "toolsId": "8996371e-3f62-4a98-8dbf-45f1938447e9"
+    },
+    "dataSources": {
+      "ZUI_FODATA_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI_FODATA_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZUI_FODATA_VAN.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZUI_FODATA/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZUI_FODATA_VAN"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "z_freightorders-display": {
+          "semanticObject": "z_freightorders",
+          "action": "display",
+          "title": "{{z_freightorders-display.flpTitle}}",
+          "subTitle": "{{z_freightorders-display.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.25",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.iherb.tm.ztmiherbfreightorders.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.iherb.tm.ztmiherbfreightorders.view",
+        "async": true,
+        "viewPath": "com.iherb.tm.ztmiherbfreightorders.view"
+      },
+      "routes": [
+        {
+          "name": "RouteFOtable",
+          "pattern": ":?query:",
+          "target": [
+            "TargetFOtable"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetFOtable": {
+          "id": "FOtable",
+          "name": "FOtable"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.iherb.tm.ztmiherbfreightorders.view.App",
+      "type": "XML",
+      "id": "App"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "comiherbtmztmiherbfreightorders"
+  }
+}
