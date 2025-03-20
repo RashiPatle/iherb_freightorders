@@ -1,111 +1,120 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core"
-	xmlns:m="sap.m"
-	xmlns:unified="sap.ui.unified"
-	xmlns:smartForm="sap.ui.comp.smartform"
-	xmlns:smartField="sap.ui.comp.smartfield"
-	xmlns:t="sap.ui.table"
-	xmlns:smartTable="sap.ui.comp.smarttable">
+    xmlns:m="sap.m"
+    xmlns:unified="sap.ui.unified"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:t="sap.ui.table"
+    xmlns:smartTable="sap.ui.comp.smarttable">
     <t:Table id="idFOTable" selectionMode="Multi" rowMode="Auto" enableColumnFreeze="true">
         <t:columns>
-            <t:Column id="_IDGenColumn1" width="8rem">
+            <t:Column id="_IDGenColumn1" width="8rem" sorted="true" sortOrder="Descending">
                 <t:customData>
-                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;TorId&quot;, &quot;leadingProperty&quot;: &quot;TorId&quot;}">
-                </core:CustomData>
-            </t:customData>
-            <m:Label id="_IDGenLabel1"  text="{i18n>FreightOrderLabel}"/>
-				<t:template>
+                    <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;TorId&quot;, &quot;leadingProperty&quot;: &quot;TorId&quot;}">
+                    </core:CustomData>
+                </t:customData>
+                <m:Label id="_IDGenLabel1" text="{i18n>FreightOrderLabel}"/>
+                <t:template>
                     <m:ObjectNumber id="_IDGenText1" number="{TorId}"></m:ObjectNumber>
-				</t:template>
+                </t:template>
             </t:Column>
         </t:columns>
         <!-- Pick-Up Date -->
         <t:columns>
-            <t:Column id="_IDGenColumn2" width="10rem" >
+            <t:Column id="_IDGenColumn2" width="10rem">
                 <t:customData>
-                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;PickupDt&quot;, &quot;leadingProperty&quot;: &quot;PickupDt&quot;}">
-                </core:CustomData>
-            </t:customData>
-            <m:Label id="_IDGenLabel2" text="{i18n>PickUpLabel}"/>
-				<t:template>
-					<m:Text id="_IDGenText2" text="{path:'PickupDt',type: 'sap.ui.model.type.DateTime', formatOptions: {'pattern': 'MM/dd/yyyy'}}"/>
-				</t:template>
+                    <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;PickupDt&quot;, &quot;leadingProperty&quot;: &quot;PickupDt&quot;}">
+                    </core:CustomData>
+                </t:customData>
+                <m:Label id="_IDGenLabel2" text="{i18n>PickUpLabel}"/>
+                <t:template>
+                    <m:Text id="_IDGenText2" text="{path:'PickupDt',type: 'sap.ui.model.type.DateTime', formatOptions: {'pattern': 'MM/dd/yyyy'}}"/>
+                </t:template>
             </t:Column>
         </t:columns>
         <!-- Delivery Date -->
         <t:columns>
-            <t:Column id="_IDGenColumn3" width="10rem" >
+            <t:Column id="_IDGenColumn3" width="10rem">
                 <t:customData>
-                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;DeliveryDt&quot;, &quot;leadingProperty&quot;: &quot;DeliveryDt&quot;}">
-                </core:CustomData>
-            </t:customData>
-            <m:Label id="_IDGenLabel3" text="{i18n>destinationDate}"/>
-				<t:template>
-					<m:Text id="_IDGenText3" text="{path:'DeliveryDt',type: 'sap.ui.model.type.DateTime', formatOptions: {'pattern': 'MM/dd/yyyy'}}" />
-				</t:template>
+                    <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;DeliveryDt&quot;, &quot;leadingProperty&quot;: &quot;DeliveryDt&quot;}">
+                    </core:CustomData>
+                </t:customData>
+                <m:Label id="_IDGenLabel3" text="{i18n>destinationDate}"/>
+                <t:template>
+                    <m:Text id="_IDGenText3" text="{path:'DeliveryDt',type: 'sap.ui.model.type.DateTime', formatOptions: {'pattern': 'MM/dd/yyyy'}}" />
+                </t:template>
             </t:Column>
         </t:columns>
         <!-- Pick up Location -->
         <t:columns>
-            <t:Column id="_IDGenColumn4" width="20rem" >
+            <t:Column id="_IDGenColumn4" width="20rem">
                 <t:customData>
-                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;SrcLocDescr&quot;, &quot;leadingProperty&quot;: &quot;SrcLocDescr&quot;}">
-                </core:CustomData>
-            </t:customData>
-            <m:Label id="_IDGenLabel4" text="{i18n>pickupLoc}"/>
-				<t:template>
-					<m:Text id="_IDGenText4" text="{SrcLocDescr}"/>
-				</t:template>
+                    <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;SrcLocDescr&quot;, &quot;leadingProperty&quot;: &quot;SrcLocDescr&quot;}">
+                    </core:CustomData>
+                </t:customData>
+                <m:Label id="_IDGenLabel4" text="{i18n>pickupLoc}"/>
+                <t:template>
+                    <m:Text id="_IDGenText4" text="{SrcLocDescr}"/>
+                </t:template>
             </t:Column>
         </t:columns>
         <!-- Delivery Location -->
         <t:columns>
-            <t:Column id="_IDGenColumn5" width="18rem" >
+            <t:Column id="_IDGenColumn5" width="11rem">
                 <t:customData>
-                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;DesLocDescr&quot;, &quot;leadingProperty&quot;: &quot;DesLocDescr&quot;}">
-                </core:CustomData>
-            </t:customData>
-            <m:Label id="_IDGenLabel5" text="{i18n>deliLoc}"/>
-				<t:template>
-					<m:Text id="_IDGenText5" text="{DesLocDescr}"/>
-				</t:template>
+                    <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;DesLocDescr&quot;, &quot;leadingProperty&quot;: &quot;DesLocDescr&quot;}">
+                    </core:CustomData>
+                </t:customData>
+                <m:Label id="_IDGenLabel5" text="{i18n>deliLoc}"/>
+                <t:template>
+                    <m:Text id="_IDGenText5" text="{DesLocDescr}"/>
+                </t:template>
             </t:Column>
         </t:columns>
         <!-- Carrier Name -->
         <t:columns>
-            <t:Column id="_IDGenColumn6" width="13rem" >
+            <t:Column id="_IDGenColumn6" width="15rem">
                 <t:customData>
-                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;TspName&quot;, &quot;leadingProperty&quot;: &quot;TspName&quot;}">
-                </core:CustomData>
-            </t:customData>
-            <m:Label id="_IDGenLabel6" text="{i18n>Carrier}"/>
-				<t:template>
-					<m:Text id="_IDGenText6" text="{TspName}"/>
-				</t:template>
+                    <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;TspName&quot;, &quot;leadingProperty&quot;: &quot;TspName&quot;}">
+                    </core:CustomData>
+                </t:customData>
+                <m:Label id="_IDGenLabel6" text="{i18n>Carrier}"/>
+                <t:template>
+                    <m:Text id="_IDGenText6" text="{TspName}"/>
+                </t:template>
             </t:Column>
         </t:columns>
 
-         <t:columns>
-            <t:Column id="_IDGenColumn7" width="8rem" >
+        <t:columns>
+            <t:Column id="_IDGenColumn7" width="8rem">
                 <t:customData>
-                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;Execution&quot;, &quot;leadingProperty&quot;: &quot;Execution&quot;}">
-                </core:CustomData>
-            </t:customData>
-            <m:Label id="_IDGenLabel7" text="{i18n>executionstat}"/>
-				<t:template>
-					<!-- <m:Text id="_IDGenText7" text="{Execution}"/> -->
+                    <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;Execution&quot;, &quot;leadingProperty&quot;: &quot;Execution&quot;}">
+                    </core:CustomData>
+                </t:customData>
+                <m:Label id="_IDGenLabel7" text="{i18n>executionstat}"/>
+                <t:template>
+                    <!-- <m:Text id="_IDGenText7" text="{Execution}"/> -->
                     <m:ObjectStatus id="_IDGenObjectStatus1" text="In transit" icon="sap-icon://alert" state="Warning"/>
-				</t:template>
+                </t:template>
             </t:Column>
         </t:columns>
+         <t:Column id="_IDGenColumn11" width="10rem">
+            <t:customData>
+                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;TrackingNo&quot;, &quot;leadingProperty&quot;: &quot;TrackingNo&quot;}"/>
+            </t:customData>
+            <m:Label id="_IDGenLabe20" text="{i18n>TrackId}"/>
+            <t:template>
+                <m:Input id="_IDGenInput"  value="{TrackingNo}" type="Text"/>
+            </t:template>
+        </t:Column>
         <!-- Special Instruction -->
-		<t:Column id="_IDGenColumn10" width="10rem">
-				<t:customData>
-					<core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;Instruction&quot;, &quot;leadingProperty&quot;: &quot;Instruction&quot;}"/>
-				</t:customData>
-				<m:Label id="_IDGenLabel9" text="{i18n>spslInst}"/>
-				<t:template>
-                    <m:Input id="_IDGenText" value="{Instruction}" type="Text"/>
-				</t:template>
-			</t:Column>
+        <t:Column id="_IDGenColumn10" width="20rem">
+            <t:customData>
+                <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;Instruction&quot;, &quot;leadingProperty&quot;: &quot;Instruction&quot;}"/>
+            </t:customData>
+            <m:Label id="_IDGenLabel9" text="{i18n>spslInst}"/>
+            <t:template>
+                <m:Input id="_IDGenText" value="{Instruction}" type="Text"/>
+            </t:template>
+        </t:Column>
     </t:Table>
-    </core:FragmentDefinition>
+</core:FragmentDefinition>

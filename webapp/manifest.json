@@ -73,7 +73,13 @@
       "minUI5Version": "1.120.25",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
       }
     },
     "contentDensities": {
@@ -87,10 +93,18 @@
           "bundleName": "com.iherb.tm.ztmiherbfreightorders.i18n.i18n"
         }
       },
+      "oFOModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "settings": {}
+      },
       "": {
         "dataSource": "mainService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request"
+        }
       }
     },
     "resources": {

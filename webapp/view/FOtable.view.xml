@@ -6,8 +6,8 @@
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:sv="sap.ui.comp.smartvariants"
     xmlns:m="sap.m">
-    <m:Page id="page">
-        <m:VBox id="_IDGenVBox">
+    <m:Page id="page" showHeader="false" enableScrolling="false">
+        <m:VBox id="_IDGenVBox" fitContainer="true">
             <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="ZC_FoTorRoot">
                 <smartFilterBar:controlConfiguration>
                     <smartFilterBar:ControlConfiguration id="_IDGenControlConfiguration1" key="TorId" label="{i18n>FreightOrderLabel}" visibleInAdvancedArea="true" />
@@ -18,8 +18,13 @@
                     <m:FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" />
                 </smartFilterBar:layoutData>
             </smartFilterBar:SmartFilterBar>
-             <smartTable:SmartTable id="SmartTable" entitySet="ZC_FoTorRoot" smartFilterId="smartFilterBar" showTablePersonalisation="true" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="{i18n>FreightOrderLabel}" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" showFullScreenButton="true" beforeRebindTable="onBeforeRebindTable" ignoreFromPersonalisation=" " requestAtLeastFields=" ">
-                <smartTable:customToolbar />
+            <smartTable:SmartTable id="SmartTable" entitySet="ZC_FoTorRoot" smartFilterId="smartFilterBar" showTablePersonalisation="true" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="{i18n>FreightOrderLabel}" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" showFullScreenButton="true" beforeRebindTable="onBeforeRebindTable" ignoreFromPersonalisation=" " requestAtLeastFields=" ">
+                <smartTable:customToolbar>
+                    <m:OverflowToolbar id="_IDGenOverflowToolbar">
+                        <m:ToolbarSpacer id="idToolbarSpace" />
+                        <m:OverflowToolbarButton id="idRefresh" icon="sap-icon://refresh" tooltip="Refresh" press="onRefresh" visible="true" />
+                    </m:OverflowToolbar>
+                </smartTable:customToolbar>
                 <core:Fragment fragmentName="com.iherb.tm.ztmiherbfreightorders.fragment.tableExt" id="idFragmentPOtable" type="XML" />
                 <!-- layout data used to make the table growing but the filter bar fixed -->
                 <smartTable:layoutData>
@@ -27,5 +32,13 @@
                 </smartTable:layoutData>
             </smartTable:SmartTable>
         </m:VBox>
+        <m:footer>
+            <m:Toolbar id="toolbar2">
+                <m:content>
+                    <m:ToolbarSpacer id="spacer1" />
+                    <m:Button press="onSavePress" text="Save" id="button4" type="Emphasized" />
+                </m:content>
+            </m:Toolbar>
+        </m:footer>
     </m:Page>
 </mvc:View>
