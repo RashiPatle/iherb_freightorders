@@ -60,6 +60,42 @@ sap.ui.define([
         onRefresh: function () {
             this.byId("SmartTable").rebindTable();
         },
+        statusFormatter: function(value){
+            var statusMap = {
+                "01": "Not Relevant",
+                "02": "Not Started",
+                "03": "In Execution",
+                "04": "Executed",
+                "05": "Interrupted",
+                "06": "Canceled",
+                "07": "Ready for Transportation Execution"
+            };
+            return statusMap[value] || "Unknown";
+        },
+        iconFormatter: function(value) {
+            var iconMap = {
+                "01": "sap-icon://status-in-process",
+                "02": "sap-icon://pending",
+                "03": "sap-icon://activity-items",
+                "04": "sap-icon://accept",
+                "05": "sap-icon://error",
+                "06": "sap-icon://decline",
+                "07": "sap-icon://complete"
+            };
+            return iconMap[value] || "sap-icon://question-mark";
+        },
+        stateFormatter: function(value) {
+            var stateMap = {
+                "01": "None",
+                "02": "Warning",
+                "03": "Information",
+                "04": "Success",
+                "05": "Error",
+                "06": "Error",
+                "07": "Success"
+            };
+            return stateMap[value] || "None";
+        }
 
         // ******************************
     });

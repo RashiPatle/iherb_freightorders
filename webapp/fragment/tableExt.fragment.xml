@@ -85,7 +85,7 @@
         </t:columns>
 
         <t:columns>
-            <t:Column id="_IDGenColumn7" width="8rem">
+            <t:Column id="_IDGenColumn7" width="16rem">
                 <t:customData>
                     <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;Execution&quot;, &quot;leadingProperty&quot;: &quot;Execution&quot;}">
                     </core:CustomData>
@@ -93,17 +93,17 @@
                 <m:Label id="_IDGenLabel7" text="{i18n>executionstat}"/>
                 <t:template>
                     <!-- <m:Text id="_IDGenText7" text="{Execution}"/> -->
-                    <m:ObjectStatus id="_IDGenObjectStatus1" text="In transit" icon="sap-icon://alert" state="Warning"/>
+                    <m:ObjectStatus id="_IDGenObjectStatus1" inverted="true" text="{path: 'Execution', formatter: '.statusFormatter'}" icon="{path: 'Execution', formatter: '.iconFormatter'}" state="{path: 'Execution', formatter: '.stateFormatter'}"/>
                 </t:template>
             </t:Column>
         </t:columns>
-         <t:Column id="_IDGenColumn11" width="10rem">
+        <t:Column id="_IDGenColumn11" width="10rem">
             <t:customData>
                 <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;TrackingNo&quot;, &quot;leadingProperty&quot;: &quot;TrackingNo&quot;}"/>
             </t:customData>
             <m:Label id="_IDGenLabe20" text="{i18n>TrackId}"/>
             <t:template>
-                <m:Input id="_IDGenInput"  value="{TrackingNo}" type="Text"/>
+                <m:Input id="_IDGenInput" value="{TrackingNo}" type="Text" editable="{= ${ReadOnly} !== 'X' }"/>
             </t:template>
         </t:Column>
         <!-- Special Instruction -->
@@ -113,7 +113,7 @@
             </t:customData>
             <m:Label id="_IDGenLabel9" text="{i18n>spslInst}"/>
             <t:template>
-                <m:Input id="_IDGenText" value="{Instruction}" type="Text"/>
+                <m:Input id="_IDGenText" value="{Instruction}" type="Text" editable="{= ${ReadOnly} !== 'X' }"/>
             </t:template>
         </t:Column>
     </t:Table>

@@ -18,7 +18,7 @@
                     <m:FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" />
                 </smartFilterBar:layoutData>
             </smartFilterBar:SmartFilterBar>
-            <smartTable:SmartTable id="SmartTable" entitySet="ZC_FoTorRoot" smartFilterId="smartFilterBar" showTablePersonalisation="true" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="{i18n>FreightOrderLabel}" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" showFullScreenButton="true" beforeRebindTable="onBeforeRebindTable" ignoreFromPersonalisation=" " requestAtLeastFields=" ">
+            <smartTable:SmartTable id="SmartTable" entitySet="ZC_FoTorRoot" smartFilterId="smartFilterBar" showTablePersonalisation="true" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="{i18n>FreightOrderLabel}" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" showFullScreenButton="true" beforeRebindTable="onBeforeRebindTable" ignoreFromPersonalisation=" " requestAtLeastFields="ReadOnly">
                 <smartTable:customToolbar>
                     <m:OverflowToolbar id="_IDGenOverflowToolbar">
                         <m:ToolbarSpacer id="idToolbarSpace" />
