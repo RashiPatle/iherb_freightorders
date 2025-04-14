@@ -14,12 +14,51 @@ sap.ui.define([
         },
         onReadOdata: function () {
             var that = this;
+            sap.ui.core.BusyIndicator.show();
             var oDataModel = this.getOwnerComponent().getModel();
             oDataModel.read("/ZC_FoTorRoot", {
                 success: function (oData) {
+                    sap.ui.core.BusyIndicator.hide();
+                    if (oData.results) {
+                        oData.results.forEach(item => {
+                            if (item.PickupDt) {
+                                let utcDate = new Date(item.PickupDt);
+                                // Convert UTC to CST in 24-hour format
+                                let cstDate = utcDate.toLocaleString("en-US", {
+                                    timeZone: "America/Chicago",
+                                    hour12: false,
+                                    year: "numeric",
+                                    month: "2-digit",
+                                    day: "2-digit",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit"
+                                }).replace(",", "");
+                                item.PickupDtCST = cstDate;
+                            }
+                        });
+                    }
+                    if (oData.results) {
+                        oData.results.forEach(item => {
+                            if (item.DeliveryDt) {
+                                let utcDate = new Date(item.DeliveryDt);
+                                // Convert UTC to PST in 24-hour format
+                                let pstDate = utcDate.toLocaleString("en-US", {
+                                    timeZone: "America/Los_Angeles",
+                                    hour12: false,
+                                    year: "numeric",
+                                    month: "2-digit",
+                                    day: "2-digit",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit"
+                                }).replace(",", "");
+                                item.DeliveryDtPST = pstDate;
+                            }
+                        });
+                    }
                     this._oFOModel.setData(oData);
                     console.log("FO OData loaded/Response:", oData);
-                    // Store the fetched data in FOTableModel
                     that._oFOModel.setData({ FreightOrders: oData.results });
                 }.bind(this),
                 error: function (oerror) {
@@ -27,6 +66,61 @@ sap.ui.define([
                 }.bind(this),
             });
         },
+
+        formatUTCToCST: function (sDateUTC) {
+            if (!sDateUTC) return "";
+
+            try {
+                // Create Date object from UTC string
+                const utcDate = new Date(sDateUTC); // example: "2024-04-08T10:00:00Z"
+
+                // Calculate CST offset (UTC-6), or CDT (UTC-5 for daylight saving)
+                // CST offset is -6 hours
+                const cstOffset = -6 * 60; // in minutes
+
+                // Convert UTC time to CST
+                const localTimestamp = utcDate.getTime() + cstOffset * 60 * 1000;
+                const cstDate = new Date(localTimestamp);
+
+                // Format it to SAPUI5 date string
+                const oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                    pattern: "yyyy/MM/dd HH:mm:ss",
+                    UTC: false
+                });
+
+                return oDateFormat.format(cstDate);
+            } catch (e) {
+                console.error("Date formatting error:", e);
+                return sDateUTC;
+            }
+        },
+
+        formatUTCToPST: function (sDateUTC) {
+            if (!sDateUTC) return "";
+
+            try {
+                // Create Date object from UTC string
+                const utcDate = new Date(sDateUTC); // e.g., "2024-04-08T10:00:00Z"
+
+                // Convert UTC to PST using Intl.DateTimeFormat with timeZone
+                const pstFormatted = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'America/Los_Angeles',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }).format(utcDate);
+
+                return pstFormatted; // output: "04/07/2024, 02:00:00"
+            } catch (e) {
+                console.error("Date conversion error:", e);
+                return sDateUTC;
+            }
+        },
+
         onSavePress: function (oEvent) {
             var i;
             var oUpdateModel = this.getView().getModel();
@@ -60,7 +154,7 @@ sap.ui.define([
         onRefresh: function () {
             this.byId("SmartTable").rebindTable();
         },
-        statusFormatter: function(value){
+        statusFormatter: function (value) {
             var statusMap = {
                 "01": "Not Relevant",
                 "02": "Not Started",
@@ -72,7 +166,7 @@ sap.ui.define([
             };
             return statusMap[value] || "Unknown";
         },
-        iconFormatter: function(value) {
+        iconFormatter: function (value) {
             var iconMap = {
                 "01": "sap-icon://status-in-process",
                 "02": "sap-icon://pending",
@@ -84,7 +178,7 @@ sap.ui.define([
             };
             return iconMap[value] || "sap-icon://question-mark";
         },
-        stateFormatter: function(value) {
+        stateFormatter: function (value) {
             var stateMap = {
                 "01": "None",
                 "02": "Warning",
