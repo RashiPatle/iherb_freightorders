@@ -5,7 +5,7 @@
     xmlns:smartField="sap.ui.comp.smartfield"
     xmlns:t="sap.ui.table"
     xmlns:smartTable="sap.ui.comp.smarttable">
-    <t:Table id="idFOTable" selectionMode="Multi" rowMode="Auto" enableColumnFreeze="true">
+    <t:Table id="idFOTable" selectionMode="Multi">
         <t:columns>
             <t:Column id="_IDGenColumn1" width="8rem" sorted="true" sortOrder="Descending">
                 <t:customData>

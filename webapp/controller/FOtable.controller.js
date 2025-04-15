@@ -1,8 +1,10 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageBox",
-    "sap/m/MessageToast"
-], (Controller, MessageBox, MessageToast) => {
+    "sap/m/MessageToast",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+], (Controller, MessageBox, MessageToast, Filter, FilterOperator) => {
     "use strict";
 
     return Controller.extend("com.iherb.tm.ztmiherbfreightorders.controller.FOtable", {
@@ -10,13 +12,18 @@ sap.ui.define([
             var oFreightOrderTable = this.getView().byId("SmartTable").getTable();
             this._oFOModel = new sap.ui.model.json.JSONModel();
             this.getView().setModel(this._oFOModel, "FOTableModel");
+            this.getView().getModel("FOTableModel").setSizeLimit(500);
             this.onReadOdata();
         },
         onReadOdata: function () {
             var that = this;
             sap.ui.core.BusyIndicator.show();
+            var oModel = this.getView().getModel("FOTableModel");
             var oDataModel = this.getOwnerComponent().getModel();
             oDataModel.read("/ZC_FoTorRoot", {
+                urlParameters: {
+                    "$top": 500
+                },
                 success: function (oData) {
                     sap.ui.core.BusyIndicator.hide();
                     if (oData.results) {
@@ -59,9 +66,11 @@ sap.ui.define([
                     }
                     this._oFOModel.setData(oData);
                     console.log("FO OData loaded/Response:", oData);
+                    oModel.setSizeLimit(oData.results.length);
                     that._oFOModel.setData({ FreightOrders: oData.results });
                 }.bind(this),
                 error: function (oerror) {
+                    sap.ui.core.BusyIndicator.hide();
                     console.log("FO data not loaded", oerror);
                 }.bind(this),
             });
@@ -189,7 +198,22 @@ sap.ui.define([
                 "07": "Success"
             };
             return stateMap[value] || "None";
-        }
+        },
+        onFilterSelect: function (oEvent) {
+            debugger
+            var sKey = oEvent.getParameter("key");
+            var oSmartTable = this.byId("SmartTable").getTable();
+            var oBinding = oSmartTable.getBinding("rows"),
+                aFilter = [];
+            oBinding.filter([]);
+
+            if (sKey === "Editable") {
+                aFilter.push(new Filter("ReadOnly", "EQ", "X"));
+            } else if (sKey === "non-Editable") {
+                aFilter.push(new Filter("ReadOnly", "EQ", ""));
+            }
+            oBinding.filter(aFilter);
+        },
 
         // ******************************
     });

@@ -18,19 +18,29 @@
                     <m:FlexItemData id="_IDGenFlexItemData1" shrinkFactor="0" />
                 </smartFilterBar:layoutData>
             </smartFilterBar:SmartFilterBar>
-            <smartTable:SmartTable id="SmartTable" entitySet="ZC_FoTorRoot" smartFilterId="smartFilterBar" showTablePersonalisation="true" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="{i18n>FreightOrderLabel}" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" showFullScreenButton="true" beforeRebindTable="onBeforeRebindTable" ignoreFromPersonalisation=" " requestAtLeastFields="ReadOnly">
-                <smartTable:customToolbar>
-                    <m:OverflowToolbar id="_IDGenOverflowToolbar">
-                        <m:ToolbarSpacer id="idToolbarSpace" />
-                        <m:OverflowToolbarButton id="idRefresh" icon="sap-icon://refresh" tooltip="Refresh" press="onRefresh" visible="true" />
-                    </m:OverflowToolbar>
-                </smartTable:customToolbar>
-                <core:Fragment fragmentName="com.iherb.tm.ztmiherbfreightorders.fragment.tableExt" id="idFragmentPOtable" type="XML" />
-                <!-- layout data used to make the table growing but the filter bar fixed -->
-                <smartTable:layoutData>
-                    <m:FlexItemData id="_IDGenFlexItemData2" growFactor="1" baseSize="0%" />
-                </smartTable:layoutData>
-            </smartTable:SmartTable>
+            <m:IconTabBar id="_IDGenIconTabBar" select=".onFilterSelect">
+                <m:items>
+                    <m:IconTabFilter id="_IDGenIconTabFilter" showAll="true" text="All"></m:IconTabFilter>
+                    <m:IconTabSeparator id="_IDGenIconTabSeparator"></m:IconTabSeparator>
+                    <m:IconTabFilter id="_IDGenIconTabFilter2" icon="sap-icon://pending" text="Pending" key="non-Editable"></m:IconTabFilter>
+                    <m:IconTabFilter id="_IDGenIconTabFilter1" icon="sap-icon://complete" text="Completed" key="Editable"></m:IconTabFilter>
+                </m:items>
+                <m:content>
+                    <smartTable:SmartTable id="SmartTable" entitySet="ZC_FoTorRoot" smartFilterId="smartFilterBar" showTablePersonalisation="true" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="{i18n>FreightOrderLabel}" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" showFullScreenButton="true" beforeRebindTable="onBeforeRebindTable" ignoreFromPersonalisation=" " requestAtLeastFields="ReadOnly">
+                        <smartTable:customToolbar>
+                            <m:OverflowToolbar id="_IDGenOverflowToolbar">
+                                <m:ToolbarSpacer id="idToolbarSpace" />
+                                <m:OverflowToolbarButton id="idRefresh" icon="sap-icon://refresh" tooltip="Refresh" press="onRefresh" visible="true" />
+                            </m:OverflowToolbar>
+                        </smartTable:customToolbar>
+                        <core:Fragment fragmentName="com.iherb.tm.ztmiherbfreightorders.fragment.tableExt" id="idFragmentPOtable" type="XML" />
+                        <!-- layout data used to make the table growing but the filter bar fixed -->
+                        <smartTable:layoutData>
+                            <m:FlexItemData id="_IDGenFlexItemData2" growFactor="1" baseSize="0%" />
+                        </smartTable:layoutData>
+                    </smartTable:SmartTable>
+                </m:content>
+            </m:IconTabBar>
         </m:VBox>
         <m:footer>
             <m:Toolbar id="toolbar2">
