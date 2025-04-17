@@ -22,8 +22,8 @@
                 <m:items>
                     <m:IconTabFilter id="_IDGenIconTabFilter" showAll="true" text="All"></m:IconTabFilter>
                     <m:IconTabSeparator id="_IDGenIconTabSeparator"></m:IconTabSeparator>
-                    <m:IconTabFilter id="_IDGenIconTabFilter2" icon="sap-icon://pending" text="Pending" key="non-Editable"></m:IconTabFilter>
-                    <m:IconTabFilter id="_IDGenIconTabFilter1" icon="sap-icon://complete" text="Completed" key="Editable"></m:IconTabFilter>
+                    <m:IconTabFilter id="_IDGenIconTabFilter2" iconColor="Critical" icon="sap-icon://pending" text="Pending" key="non-Editable"></m:IconTabFilter>
+                    <m:IconTabFilter id="_IDGenIconTabFilter1" iconColor="Positive" icon="sap-icon://complete" text="Completed" key="Editable"></m:IconTabFilter>
                 </m:items>
                 <m:content>
                     <smartTable:SmartTable id="SmartTable" entitySet="ZC_FoTorRoot" smartFilterId="smartFilterBar" showTablePersonalisation="true" tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="{i18n>FreightOrderLabel}" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" showFullScreenButton="true" beforeRebindTable="onBeforeRebindTable" ignoreFromPersonalisation=" " requestAtLeastFields="ReadOnly">

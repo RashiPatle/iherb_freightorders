@@ -27,7 +27,10 @@
                 </t:customData>
                 <m:Label id="_IDGenLabel2" text="{i18n>PickUpLabel}"/>
                 <t:template>
-                    <m:Text id="_IDGenText2" class="sapUiSmallMarginEnd" text="{path:'PickupDt', formatter: '.formatUTCToCST'}"/>
+                    <m:HBox id="_IDGenHBox">
+                        <m:Text id="_IDGenText2" class="sapUiSmallMarginEnd" text="{path:'PickupDt', formatter: '.formatUTCToCST'}"/>
+                        <m:Text id="_IDGenText12" text="{path:'SrcTzone'}"></m:Text>
+                    </m:HBox>
                 </t:template>
             </t:Column>
         </t:columns>
@@ -40,7 +43,10 @@
                 </t:customData>
                 <m:Label id="_IDGenLabel3" text="{i18n>destinationDate}"/>
                 <t:template>
-                    <m:Text id="_IDGenText3" text="{path:'DeliveryDt', formatter: '.formatUTCToPST'}" />
+                    <m:HBox id="_IDGenHBox1">
+                        <m:Text id="_IDGenText3" class="sapUiSmallMarginEnd" text="{path:'DeliveryDt', formatter: '.formatUTCToPST'}" />
+                        <m:Text id="_IDGenText13" text="{path:'DesTzone'}"></m:Text>
+                    </m:HBox>
                 </t:template>
             </t:Column>
         </t:columns>
