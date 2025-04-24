@@ -42,6 +42,12 @@
           "action": "display",
           "title": "{{z_freightorders-display.flpTitle}}",
           "subTitle": "{{z_freightorders-display.flpSubtitle}}",
+          "icon": "sap-icon://inventory",
+          "indicatorDataSource": {
+						"dataSource": "mainService",
+						"path": "ZC_FoTorRoot/$count",
+						"refresh": 1000
+					},
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"

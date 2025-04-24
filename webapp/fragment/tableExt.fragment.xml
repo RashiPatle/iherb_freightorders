@@ -28,7 +28,7 @@
                 <m:Label id="_IDGenLabel2" text="{i18n>PickUpLabel}"/>
                 <t:template>
                     <m:HBox id="_IDGenHBox">
-                        <m:Text id="_IDGenText2" class="sapUiSmallMarginEnd" text="{path:'PickupDt', formatter: '.formatUTCToCST'}"/>
+                        <m:Text id="_IDGenText2" class="sapUiSmallMarginEnd" text="{path:'PickupDt', formatter: '.convertUTCtoCST'}"/>
                         <m:Text id="_IDGenText12" text="{path:'SrcTzone'}"></m:Text>
                     </m:HBox>
                 </t:template>

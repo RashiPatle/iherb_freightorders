@@ -76,31 +76,62 @@ sap.ui.define([
             });
         },
 
-        formatUTCToCST: function (sDateUTC) {
-            if (!sDateUTC) return "";
+        // formatUTCToCST: function (sDateUTC) {
+        //     if (!sDateUTC) return "";
 
+        //     try {
+        //         // Create Date object from UTC string
+        //         const utcDate = new Date(sDateUTC); // example: "2024-04-08T10:00:00Z"
+
+        //         // Calculate CST offset (UTC-6), or CDT (UTC-5 for daylight saving)
+        //         // CST offset is -6 hours
+        //         const cstOffset = -6 * 60; // in minutes
+
+        //         // Convert UTC time to CST
+        //         const localTimestamp = utcDate.getTime() + cstOffset * 60 * 1000;
+        //         const cstDate = new Date(localTimestamp);
+
+        //         // Format it to SAPUI5 date string
+        //         const oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+        //             pattern: "yyyy/MM/dd HH:mm:ss",
+        //             UTC: false
+        //         });
+
+        //         return oDateFormat.format(cstDate);
+        //     } catch (e) {
+        //         console.error("Date formatting error:", e);
+        //         return sDateUTC;
+        //     }
+        // },
+
+        convertUTCtoCST: function (utcDate) {
+            debugger;
+            if (!utcDate) return "";
             try {
-                // Create Date object from UTC string
-                const utcDate = new Date(sDateUTC); // example: "2024-04-08T10:00:00Z"
+                // Step 1: Make sure it's a valid Date object
+                if (typeof utcDate === "string") {
+                    utcDate = new Date(utcDate); // parse from string
+                }
 
-                // Calculate CST offset (UTC-6), or CDT (UTC-5 for daylight saving)
-                // CST offset is -6 hours
-                const cstOffset = -6 * 60; // in minutes
+                if (!utcDate || isNaN(utcDate.getTime())) {
+                    console.error("Invalid UTC date:", utcDate);
+                    return null;
+                }
 
-                // Convert UTC time to CST
-                const localTimestamp = utcDate.getTime() + cstOffset * 60 * 1000;
-                const cstDate = new Date(localTimestamp);
+                // Step 2: Manually subtract 6 hours to convert from UTC to CST (UTC -5)
+                var cstOffsetMillis = 5 * 60 * 60 * 1000;
+                var cstDate = new Date(utcDate.getTime() - cstOffsetMillis);
 
-                // Format it to SAPUI5 date string
-                const oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
-                    pattern: "yyyy/MM/dd HH:mm:ss",
-                    UTC: false
+                // Step 3: Log or return the new CST date
+                var oFormatter = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                    pattern: "yyyy/MM/dd HH:mm:ss"
                 });
 
-                return oDateFormat.format(cstDate);
+                var sFormattedCST = oFormatter.format(cstDate);
+                return sFormattedCST;
             } catch (e) {
                 console.error("Date formatting error:", e);
-                return sDateUTC;
+                return utcDate;
             }
         },
 
